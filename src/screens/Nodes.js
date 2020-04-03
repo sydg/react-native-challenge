@@ -52,7 +52,7 @@ Nodes.propTypes = {
   nodes: PropTypes.object.isRequired,
 };
 const styles = StyleSheet.create({
-  heading: {marginLeft: 8, marginTop: 35},
+  heading: {marginLeft: 30, marginTop: 45},
 });
 
 function mapStateToProps(state) {

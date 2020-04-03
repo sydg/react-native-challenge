@@ -33,8 +33,9 @@ Node.propTypes = {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 8,
-    margin: 8,
+    padding: 10,
+    marginVertical: 10,
+    marginHorizontal: 30
   },
   spacing: {
     marginTop: 5,

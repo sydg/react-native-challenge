@@ -1,17 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import {View, StyleSheet} from 'react-native';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import * as actions from '../actions/nodes';
-import Node from '../components/Node';
-import {Heading} from 'material-bread';
+import React from "react";
+import PropTypes from "prop-types";
+import { View, StyleSheet } from "react-native";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import * as actions from "../actions/nodes";
+import Node from "../components/Node";
+import { Heading } from "material-bread";
 
 export class Nodes extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      expandedNodeURL: null,
+      expandedNodeURL: null
     };
     this.toggleNodeExpanded = this.toggleNodeExpanded.bind(this);
   }
@@ -22,13 +22,12 @@ export class Nodes extends React.Component {
 
   toggleNodeExpanded(node) {
     this.setState({
-      expandedNodeURL:
-        node.url === this.state.expandedNodeURL ? null : node.url,
+      expandedNodeURL: node.url === this.state.expandedNodeURL ? null : node.url
     });
   }
 
   render() {
-    const {nodes} = this.props;
+    const { nodes } = this.props;
     return (
       <View>
         <Heading style={styles.heading} type={4}>
@@ -49,22 +48,25 @@ export class Nodes extends React.Component {
 
 Nodes.propTypes = {
   actions: PropTypes.object.isRequired,
-  nodes: PropTypes.object.isRequired,
+  nodes: PropTypes.object.isRequired
 };
 const styles = StyleSheet.create({
-  heading: {marginLeft: 30, marginTop: 45},
+  heading: { marginLeft: 30, marginTop: 45, fontWeight: "700" }
 });
 
 function mapStateToProps(state) {
   return {
-    nodes: state.nodes,
+    nodes: state.nodes
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(actions, dispatch),
+    actions: bindActionCreators(actions, dispatch)
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Nodes);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Nodes);

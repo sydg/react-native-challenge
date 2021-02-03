@@ -29,7 +29,7 @@ describe('<Nodes />', () => {
 
   it('should match snapshot', () => {
     const middlewares = [thunk];
-    const store = configureMockStore(middlewares)({nodes});
+    const store = configureMockStore(middlewares)({nodes, blocks: {}});
     const component = create(
       <Provider store={store}>
         <ConnectedNodes />

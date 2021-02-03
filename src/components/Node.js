@@ -5,31 +5,37 @@ import colors from "../constants/colors";
 import { Paper, Subtitle, BodyText, Caption } from "material-bread";
 import { Expander } from "./Expander";
 import Status from "./Status";
+import Block from "./Block";
+import Blocks from "./Blocks";
 
-const Node = ({ node, expanded, toggleNodeExpanded }) => (
-  <TouchableOpacity onPress={() => toggleNodeExpanded(node)}>
+const Node = ({ node, expanded, toggleNodeExpanded, blocks }) => (
+  <View>
     <Paper elevation={2} style={styles.container}>
-      <View style={styles.headingContainer}>
-        <Subtitle
-          type={6}
-          text={node.name || "Unknown"}
-          style={styles.heading}
-        />
-        <Status loading={node.loading} online={node.online} />
-      </View>
-      <Caption
-        text={node.url}
-        color={colors.gray}
-        style={styles.secondaryHeading}
-      />
-      <Expander expanded={expanded} style={styles.icon(expanded)} />
+      <TouchableOpacity onPress={() => toggleNodeExpanded(node)}>
+        <View>
+          <View style={styles.headingContainer}>
+            <Subtitle
+              type={6}
+              text={node.name || "Unknown"}
+              style={styles.heading}
+            />
+            <Status loading={node.loading} online={node.online} />
+          </View>
+          <Caption
+            text={node.url}
+            color={colors.gray}
+            style={styles.secondaryHeading}
+          />
+          <Expander expanded={expanded} style={styles.icon(expanded)} />
+        </View>
+      </TouchableOpacity>
       {expanded && (
         <View style={styles.heading}>
-          <BodyText type={1} text={"Blocks go here"} />
+          <Blocks blocks={blocks} />
         </View>
       )}
     </Paper>
-  </TouchableOpacity>
+  </View>
 );
 
 Node.propTypes = {
@@ -39,6 +45,7 @@ Node.propTypes = {
     name: PropTypes.string,
     loading: PropTypes.bool
   }).isRequired,
+  blocks: PropTypes.any,
   expanded: PropTypes.bool,
   toggleNodeExpanded: PropTypes.func.isRequired
 };
